@@ -20,13 +20,19 @@ angular.module('ticTacToe', [])
     }
   };
   $scope.checkWin = function (row, index) {
+    console.log('row number', $scope.board.indexOf(row));
+
     if (row.every(cell => cell === row[index])) {
       return 1;
     }
     if ($scope.board.every(item => item[index] === row[index])) {
       return 1;
     }
-    if ($scope.board.every((item) => item.every(el => el !== '--'))) {
+    if ([$scope.board[0][0], $scope.board[1][1], $scope.board[2][2]].every((item) => item === row[index])
+    || [$scope.board[0][2], $scope.board[1][1], $scope.board[2][0]].every(item => item === row[index])) {
+      return 1;
+    }
+    if ($scope.board.every(item => item.every(el => el !== '--'))) {
       return 2;
     }
     return false;
