@@ -12,6 +12,7 @@
         <td ng-repeat="cell in row track by $index" ng-click="makeMove(move, $index, row)">{{cell}}</td>
       </tr>
     </table>
+    <p>{{error}}</p>
     <script src="index.js"></script>
   </body>
 </html>
