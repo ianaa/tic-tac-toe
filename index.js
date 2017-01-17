@@ -12,8 +12,8 @@ angular.module('ticTacToe', [])
   $scope.makeMove = function (move, index, row) {
     if (row[index] === '--') {
       row[index] = move;
+      $scope.error = $scope.checkWin(row, index) ? `We have a winner!!! Conrats ${$scope.move}` : '';
       $scope.move = move == $scope.player1 ? $scope.player2 : $scope.player1;
-      $scope.error = $scope.checkWin(row, index) ? 'We have a winner!!!' : '';
     } else {
       $scope.error = 'please make a move on an empty cell';
     }
