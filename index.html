@@ -6,7 +6,7 @@
   </head>
   <body ng-app="ticTacToe" ng-controller="Ctrl">
     <h3>Player 1 - {{player1}} vs. Player 2 - {{player2}}</h3>
-    <h4>{{move}} turn to make a move </h4>
+    <h4>{{move}} turn to make a move </h4> <button ng-click="newBoard()">New Game</button>
     <table>
       <tr ng-repeat="row in board track by $index">
         <td ng-repeat="cell in row track by $index" ng-click="makeMove(move, $index, row)">{{cell}}</td>

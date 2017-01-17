@@ -13,9 +13,26 @@ angular.module('ticTacToe', [])
     if (row[index] === '--') {
       row[index] = move;
       $scope.move = move == $scope.player1 ? $scope.player2 : $scope.player1;
-      $scope.error = '';
+      $scope.error = $scope.checkWin(row, index) ? 'We have a winner!!!' : '';
     } else {
       $scope.error = 'please make a move on an empty cell';
     }
+  };
+  $scope.checkWin = function (row, index) {
+    if (row.every(cell => cell === row[index])) {
+      return true;
+    }
+    if ($scope.board.every((item) => { item[index] === row[index]; })) {
+      return true;
+    }
+    return false;
+  };
+  $scope.newBoard = function () {
+    $scope.board = [
+      ['--', '--', '--'],
+      ['--', '--', '--'],
+      ['--', '--', '--'],
+    ];
+    $scope.error = '';
   };
 });
