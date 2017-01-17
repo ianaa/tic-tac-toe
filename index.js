@@ -1,14 +1,14 @@
 angular.module('ticTacToe', [])
 .controller('Ctrl', ($scope) => {
-  $scope.board = [
-    ['--', '--', '--'],
-    ['--', '--', '--'],
-    ['--', '--', '--'],
-  ];
+  // $scope.board = [
+  //   ['--', '--', '--'],
+  //   ['--', '--', '--'],
+  //   ['--', '--', '--'],
+  // ];
+  // $scope.move = $scope.player1;
+  // $scope.error = '';
   $scope.player1 = 'X';
   $scope.player2 = 'O';
-  $scope.move = $scope.player1;
-  $scope.error = '';
   $scope.makeMove = function (move, index, row) {
     if (row[index] === '--') {
       row[index] = move;
@@ -34,5 +34,7 @@ angular.module('ticTacToe', [])
       ['--', '--', '--'],
     ];
     $scope.error = '';
+    $scope.move = $scope.player1;
   };
+  $scope.newBoard();
 });
