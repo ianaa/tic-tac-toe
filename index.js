@@ -12,7 +12,8 @@ angular.module('ticTacToe', [])
   $scope.makeMove = function (move, index, row) {
     if (row[index] === '--') {
       row[index] = move;
-      $scope.error = $scope.checkWin(row, index) ? `We have a winner!!! Conrats ${$scope.move}` : '';
+      const state = $scope.checkWin(row, index);
+      $scope.error = state ? state == 1 ? `We have a winner!!! Conrats ${$scope.move}` : 'We have a draw!' : '';
       $scope.move = move == $scope.player1 ? $scope.player2 : $scope.player1;
     } else {
       $scope.error = 'please make a move on an empty cell';
@@ -20,10 +21,13 @@ angular.module('ticTacToe', [])
   };
   $scope.checkWin = function (row, index) {
     if (row.every(cell => cell === row[index])) {
-      return true;
+      return 1;
     }
-    if ($scope.board.every((item) => { item[index] === row[index]; })) {
-      return true;
+    if ($scope.board.every(item => item[index] === row[index])) {
+      return 1;
+    }
+    if ($scope.board.every((item) => item.every(el => el !== '--'))) {
+      return 2;
     }
     return false;
   };
