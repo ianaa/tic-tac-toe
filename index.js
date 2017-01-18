@@ -4,16 +4,18 @@ angular.module('ticTacToe', [])
   $scope.player2 = 'O';
 
   $scope.makeMove = function (move, index, row) {
-    if ($scope)
-      {if (row[index] === '--') {
+    if ($scope.error && $scope.error !== 'please make a move on an empty cell') {
+      $scope.newBoard();
+    }
+    if (row[index] === '  ') {
       row[index] = move;
       const state = $scope.checkWin(row, index);
       $scope.error = state ? state == 1 ? `We have a winner!!! Conrats ${$scope.move}` : 'We have a draw!' : '';
       $scope.move = move == $scope.player1 ? $scope.player2 : $scope.player1;
     } else {
       $scope.error = 'please make a move on an empty cell';
-    }}
-  };
+    } 
+};
   $scope.checkWin = function (row, index) {
     if (row.every(cell => cell === row[index]) || $scope.board.every(item => item[index] === row[index])) {
       return 1;
@@ -22,16 +24,16 @@ angular.module('ticTacToe', [])
     || [$scope.board[0][2], $scope.board[1][1], $scope.board[2][0]].every(item => item === row[index])) {
       return 1;
     }
-    if ($scope.board.every(item => item.every(el => el !== '--'))) {
+    if ($scope.board.every(item => item.every(el => el !== '  '))) {
       return 2;
     }
     return false;
   };
   $scope.newBoard = function () {
     $scope.board = [
-      ['--', '--', '--'],
-      ['--', '--', '--'],
-      ['--', '--', '--'],
+      ['  ', '  ', '  '],
+      ['  ', '  ', '  '],
+      ['  ', '  ', '  '],
     ];
     $scope.error = '';
     $scope.move = $scope.player1;
